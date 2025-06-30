@@ -2,10 +2,12 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 echo "Installing ArgoCD..."
 
 # Apply the ArgoCD manifest
-kubectl apply -f "$HOME/gitops-project/cluster/manifests/argocd/install.yaml"
+kubectl apply -n argocd -f "${SCRIPT_DIR}/../manifests/argocd/install.yaml" 
 
 # Wait for the argocd-server deployment to be created
 until kubectl get deployment argocd-server -n argocd &> /dev/null; do

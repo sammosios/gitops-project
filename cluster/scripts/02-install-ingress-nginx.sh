@@ -2,10 +2,12 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 echo "Installing Nginx Ingress Controller..."
 
 # Apply the manifest
-kubectl apply -f "$HOME/gitops-project/cluster/manifests/ingress-nginx/deploy.yaml"
+kubectl apply -f "${SCRIPT_DIR}/../manifests/ingress-nginx/deploy.yaml"
 
 # Wait for the deployment to be available
 kubectl wait --namespace ingress-nginx --for=condition=available deployment/ingress-nginx-controller --timeout=300s

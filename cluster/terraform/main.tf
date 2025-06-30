@@ -1,8 +1,7 @@
 resource "kind_cluster" "default" {
   name = "gitops-cluster"
   node_image = "kindest/node:v1.28.15"
-  kubeconfig_path = "${path.module}/gitops-cluster-config"
-
+  kubeconfig_path = "gitops-cluster-config.yaml"
   kind_config {
     kind = "Cluster"
     api_version = "kind.x-k8s.io/v1alpha4"

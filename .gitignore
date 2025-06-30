@@ -1,5 +1,6 @@
 cluster/terraform/.terraform
 cluster/terraform/.terraform.lock.hcl
+gitops-cluster-config.yaml
 gitops-cluster-config
 *.tfstate.backup
 *.tfstate

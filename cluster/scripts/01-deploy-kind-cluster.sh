@@ -2,18 +2,21 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 echo "Deploying Kind cluster with Terraform..."
 
-cd "$HOME/gitops-project/cluster/terraform"
+cd "${SCRIPT_DIR}/../terraform"
 
 # Destroy any existing Terraform-managed resources (including the Kind cluster if managed by Terraform)
+echo "Destroying existing Terraform-managed resources..."
 terraform destroy --auto-approve || true
 
 terraform init
 terraform apply --auto-approve
 
 # Get kubeconfig from Kind and save it to a temporary file
-KIND_KUBECONFIG_PATH="/tmp/kind-kubeconfig-$(date +%s)"
+KIND_KUBECONFIG_PATH="${SCRIPT_DIR}/../terraform/gitops-cluster-config.yaml"
 kind get kubeconfig --name gitops-cluster > "${KIND_KUBECONFIG_PATH}"
 
 # Output the path to the kubeconfig for the parent script

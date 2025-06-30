@@ -7,8 +7,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo "Starting full GitOps project deployment..."
 
 # Deploy Kind Cluster and capture the kubeconfig path
-KIND_KUBECONFIG_OUTPUT=$("${SCRIPT_DIR}/01-deploy-kind-cluster.sh")
-KIND_KUBECONFIG_PATH=$(echo "${KIND_KUBECONFIG_OUTPUT}" | grep "KIND_KUBECONFIG_PATH=" | cut -d'=' -f2)
+"${SCRIPT_DIR}/01-deploy-kind-cluster.sh"
+KIND_KUBECONFIG_PATH="${SCRIPT_DIR}/../terraform/gitops-cluster-config.yaml"
 export KUBECONFIG="${KIND_KUBECONFIG_PATH}"
 
 # Install Ingress Nginx
@@ -23,4 +23,5 @@ export KUBECONFIG="${KIND_KUBECONFIG_PATH}"
 echo "All components deployed. Please ensure your /etc/hosts file has '127.0.0.1 argocd.local' and access ArgoCD at https://argocd.local"
 
 # Retrieve initial admin password
+echo "Initial ArgoCD admin password: "
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
