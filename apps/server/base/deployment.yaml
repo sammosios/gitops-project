@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: server
-        image: <your-docker-registry>/budgeteer:latest
+        image: docker.io/sammosios/budgeteer-server:latest
         ports:
         - containerPort: 3000
