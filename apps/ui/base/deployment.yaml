@@ -21,4 +21,4 @@ spec:
         - containerPort: 80
         env:
         - name: API_URL
-          value: "http://budgeteer-server.default.svc.cluster.local:3000"
+          value: "http://server.argocd.svc.cluster.local:3000"
