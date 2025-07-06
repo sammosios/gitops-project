@@ -4,9 +4,9 @@ metadata:
   name: budgeteer-backend
   namespace: argocd
 spec:
-  project: default
+  project: budgeteer
   source:
-    repoURL: https://github.com/sammosios/budgeteer.git
+    repoURL: https://github.com/sammosios/gitops-project.git
     path: apps/server/base
     targetRevision: HEAD
   destination:

@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/sammosios/budgeteer.git
+    repoURL: https://github.com/sammosios/gitops-project.git
     path: apps/ui/base
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: budgeteer
   syncPolicy:
     automated:
       prune: true
