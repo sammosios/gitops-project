@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: budgeteer-ui
+  name: ui
   labels:
-    app: budgeteer-ui
+    app: ui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: budgeteer-ui
+      app: ui
   template:
     metadata:
       labels:
-        app: budgeteer-ui
+        app: ui
     spec:
       containers:
-      - name: budgeteer-ui
+      - name: ui
         image: docker.io/sammosios/budgeteer-ui:latest
         ports:
         - containerPort: 80

@@ -22,6 +22,9 @@ export KUBECONFIG="${KIND_KUBECONFIG_PATH}"
 
 echo "All components deployed. Please ensure your /etc/hosts file has '127.0.0.1 argocd.local' and access ArgoCD at https://argocd.local"
 
+echo "Configuring local Kubectl context to use the Kind cluster..."
+kubectl config use-context kind-gitops-cluster --kubeconfig="${KIND_KUBECONFIG_PATH}"
+
 # Retrieve initial admin password
 echo "Initial ArgoCD admin password: "
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d

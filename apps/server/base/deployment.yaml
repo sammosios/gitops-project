@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: budgeteer-server
+  name: server
   labels:
-    app: budgeteer-server
+    app: server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: budgeteer-server
+      app: server
   template:
     metadata:
       labels:
-        app: budgeteer-server
+        app: server
     spec:
       containers:
-      - name: budgeteer-server
-        image: docker.io/sammosios/budgeteer-server:latest
+      - name: server
+        image: <your-docker-registry>/budgeteer:latest
         ports:
         - containerPort: 3000
