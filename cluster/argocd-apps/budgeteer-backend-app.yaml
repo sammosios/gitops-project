@@ -4,14 +4,14 @@ metadata:
   name: budgeteer-backend
   namespace: argocd
 spec:
-  project: budgeteer
+  project: default
   source:
     repoURL: https://github.com/sammosios/gitops-project.git
     path: apps/server/base
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: budgeteer
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
